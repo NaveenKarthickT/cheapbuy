@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f5f5f5;
+}
+
+html, body {
+    height: 100%;
+}
+.nav-cb{
+    
+   
+    border-radius: 10px;
+}
+
+.full-box {
+    height: 100%;
+    width: 80%;
+}
+.right-box {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2rem !important;
+    scrollbar-width: none;         
+    -ms-overflow-style: none;       
+}
+
+.right-box::-webkit-scrollbar {
+    display: none;                  
+}
+.left-box, .right-box, .nav-cb {
+   
+    border-radius: 10px;
+}
+.dialog-box p{
+    border-left: 3px solid gray;
+    border-radius: 5px;
+}
+
+
+.left-box {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-right: 5px solid gray;
+}
+
+.left-1 {
+    flex: 1;
+    overflow: hidden;
+    border-bottom: 1px solid black;
+    padding: 4;
+    
+    border-radius: 3px;
+}
+.hero-content {
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+.hero-badge {
+    background: #0d6efd;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+.hero-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    color: #111;
+    margin: 0;
+}
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #0d6efd;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.left-2 {
+    flex: 0 0 30%;
+    overflow: hidden;
+}
+
+.col-4, .left-row, .entire {
+    height: 100%;
+}
+
+.left-row {
+    margin: 0;
+}
+
+.col-4 {
+    padding: 3px;
+    height: 100%;
+}
+
+.product-img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+.product-img:hover{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+.edu-font {
+    font-family: "Edu QLD Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.edu-font-moto {
+    font-family: "Edu QLD Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+.form-label{
+    color: gray;
+}
+
+.login-page{
+    display:block;
+}
+.register-page{
+    display:none;
+}
