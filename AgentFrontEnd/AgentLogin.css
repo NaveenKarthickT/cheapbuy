@@ -150,3 +150,9 @@ html, body {
 .register-page{
     display:none;
 }
+.admin-login{
+    display: none;
+}
+.error-msg{
+    display: none;
+}

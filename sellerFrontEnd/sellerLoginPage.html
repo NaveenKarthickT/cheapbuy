@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=storefront" />    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="stylesheet" href="sellerLogin.css">
+   
+    <title>Cheap-Buy</title>
+</head>
+<style>
+    .admin-page{
+        display: none;
+    }
+</style>
+<body>
+    <div class="text-center nav-cb mt-2 mb-2  p-4 d-flex flex-row justify-content-center align-items-center">
+        <h1 class="mb-0 nav-title">
+            <span class="material-symbols-outlined nav-icon">storefront</span>
+                Cheap<span class="text-primary">-Buy</span>
+        </h1>
+        <p class="mt-5 ms-3 mb-0 edu-font-moto text-secondary nav-tagline">
+            Sell more, grow faster!
+        </p>
+    </div>
+    <div class="login-box container card p-4 full-box mb-5">
+        <div class="row justify-content-center entire">
+            
+            <div class="left-box col-md-6">
+                
+                <div class="left-1">
+                    <div class="hero-content">
+        <span class="hero-badge">🚀 Seller Partner</span>
+        <h2 class="hero-title edu-font">Grow Your Business with Cheap-Buy.</h2>
+        <p class="hero-sub edu-font-moto">
+            List your products, reach more customers, and grow your sales.
+        </p>
+        <button class="hero-btn">
+            <span class="material-symbols-outlined">storefront</span>
+            Start Selling
+        </button>
+    </div>
+                </div>
+                <div class="left-2">
+                    <div class="row left-row">
+
+                        <div class="col-4">
+                            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" class="w-100 product-img" alt="Shoe">
+                        </div>
+                        <div class="col-4">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800" class="w-100 product-img" alt="Shoe">
+                        </div>
+                        <div class="col-4">
+                            <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800" class="w-100 product-img" alt="Shoe">
+                        </div>
+
+                    </div>
+                </div>
+                        
+            </div>
+            
+            <div class="col-md-5 right-box p-4 login-page" id="login-page">
+                <h1 class="edu-font">
+                    <span class="material-symbols-outlined">
+                        storefront
+                    </span>
+                    cheap<span class="text-primary">buy</span>
+                </h1>
+                <div class="dialog-box mt-5">
+                    <h4>WELCOME BACK!</h4>
+                    
+                    <p><span class="ms-2"> </span> sign in to sell your products !</p>
+                </div>
+                <p class="text-danger error-msg" id="errormsg"><span>!</span></p>
+                <div class="login-form mt-3">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address 
+                             <span class="text-danger">*</span> :
+                            </label>
+                            
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password 
+                                <span class="text-danger">*</span>
+                                : </label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                       
+
+                        <div class="text-end mt-2 me-2 mb-2">
+                            <a href="#" class="text-decoration-none" onclick="forget_page()">Forgot Password?</a>
+                         </div>
+
+                        <button type="button" class="btn btn-primary w-100" onclick="login()">
+                            Login
+                        </button>
+
+                           
+                </form>
+                </div>
+                <div class="mt-4">
+                    <p>Dont have any account? <span >
+                        <a href="#" class="text-decoration-none" onclick="register()">register here!</a>
+                    </span></p>
+                </div>
+                <div class="mt-3">
+                    <p class="text-secondary" >sample user : naveen@gmail.com
+                        <span><br></span>
+                        password : 1234
+                    </p>
+                    
+                </div>
+               
+            </div>
+            <div class="col-md-5 right-box p-4 register-page " id="register-page">
+                <h1 class="edu-font">
+                    <span class="material-symbols-outlined">
+                        storefront
+                    </span>
+                    cheap<span class="text-primary">buy</span>
+                </h1>
+                
+                <div class="dialog-box mt-5">
+                    <h4>CREATE SELLER ACCOUNT!</h4>
+            
+                    <p><span class="ms-2"> </span> Join Cheap-Buy and start selling!</p>
+                </div>
+                <p class="text-danger error-msg" id="reg-error-msg"></p>
+                <div class="register-form mt-3">
+                    <form>
+                        <div class="mb-3">
+                            <label for="reg-name" class="form-label">Full Name 
+                                <span class="text-danger">*</span>
+                                : </label>
+            
+                            <input type="text" id="reg-name" class="form-control" placeholder="Enter your full name">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="reg-email" class="form-label">Email Address 
+                                <span class="text-danger">*</span>
+                                : </label>
+            
+                            <input type="email" id="reg-email" class="form-control" placeholder="Enter your email">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="reg-password" class="form-label">Password 
+                                <span class="text-danger">*</span>
+                                : </label>
+                            <input type="password" id="reg-password" class="form-control" placeholder="Enter your password">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="reg-confirm" class="form-label">Confirm Password 
+                                <span class="text-danger">*</span>
+                                : </label>
+                            <input type="password" id="reg-confirm" class="form-control" placeholder="Re-enter your password">
+                        </div>
+                         <div class="mb-3">
+                            <label for="Buisness-Name" class="form-label">Business-Name 
+                                <span class="text-danger">*</span>
+                                : </label>
+                            <input type="text" id="Buisness-Name" class="form-control" placeholder="Enter your Business-Name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="ph-no" class="form-label">Phone No 
+                                <span class="text-danger">*</span>
+                                : </label>
+                            <input type="text" id="ph-no" class="form-control" placeholder="Enter your phone No">
+                        </div>
+            
+                        <div class="text-end mt-2 me-2 mb-2">
+                            <a href="#" class="text-decoration-none">Already have an account?</a>
+                        </div>
+            
+                        <button type="button" class="btn btn-primary w-100" onclick="register_suc()">
+                            Register
+                        </button>
+                    </form>
+                </div>
+                <div class="mt-4">
+                    <p>Already registered? <span>
+                            <a href="#" class="text-decoration-none" onclick="loginpage()">login here!</a>
+                        </span></p>
+                </div>
+                <div class="mt-3">
+                    <p class="text-secondary">sample user : naveen@gmail.com
+                        <span><br></span>
+                        password : naveen123
+                    </p>
+            
+                </div>
+            
+            </div>
+            <div class="col-md-5 right-box p-4 forgot-page" style="display: none;" id="fpage">
+                <h1 class="edu-font">
+                    <span class="material-symbols-outlined">
+                        storefront
+                    </span>
+                    cheap<span class="text-primary">buy</span>
+                </h1>
+                <div class="dialog-box mt-5">
+                    <h4>RESET PASSWORD!</h4>
+            
+                    <p><span class="ms-2"> </span> set your new password</p>
+                </div>
+                <p class="text-danger error-msg" id="rs-errormsg"></p>
+                <div class="forgot-form mt-3">
+                    <form>
+                        <div class="mb-3">
+                            <label for="forgot-newpass" class="form-label" id="rs-email">Mailid
+                                <span class="text-danger">*</span>
+                                : </label>
+            
+                            <input type="text" id="fmailid" class="form-control" placeholder="Enter your mailid">
+                        </div>
+
+
+
+
+                        <div class="mb-3">
+                            <label for="forgot-newpass" class="form-label">New Password 
+                                <span class="text-danger">*</span>
+                                : </label>
+            
+                            <input type="password" id="fpassword" class="form-control" placeholder="Enter your new password">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="forgot-confirm" class="form-label">Confirm Password 
+                                <span class="text-danger">*</span>
+                                : </label>
+            
+                            <input type="password" id="cpassword" class="form-control"
+                                placeholder="Re-enter your new password">
+                        </div>
+            
+                        <div class="text-end mt-2 me-2 mb-2">
+                            <a href="#" class="text-decoration-none" onclick="loginpage()">Back to Login?</a>
+                        </div>
+            
+                        <button type="button" class="btn btn-primary w-100 " onclick="forgetpass()">
+                            Reset Password
+                        </button>
+                    </form>
+                </div>
+                <div class="mt-4">
+                    <p>Remembered your password? <span>
+                            <a href="#" class="text-decoration-none" onclick="loginpage()">login heree!</a>
+                        </span></p>
+                </div>
+            </div> 
+
+             <div class="col-md-5 right-box p-4 admin-login" id="admin-login" >
+        <h1 class="edu-font">
+            <span class="material-symbols-outlined">
+                shopping_cart
+            </span>
+            cheap<span class="text-primary">buy</span>
+        </h1>
+        <div class="dialog-box mt-5">
+            <h4>ADMIN LOGIN!</h4>
+
+            <p><span class="ms-2"> </span> sign in to admin panel</p>
+        </div>
+
+        <div class="login-form mt-3" >
+            <form>
+                <div class="mb-3">
+                    <label for="admin-email" class="form-label">Email Address 
+                        <span class="text-danger">*</span>
+                        : </label>
+
+                    <input type="email" id="admin-email" class="form-control" placeholder="Enter admin email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="admin-password" class="form-label">Password 
+                        <span class="text-danger">*</span>
+                        : </label>
+                    <input type="password" id="admin-password" class="form-control" placeholder="Enter admin password">
+                </div>
+
+                <div class="text-end mt-2 me-2 mb-2">
+                    <a href="#" class="text-decoration-none">Forgot Password?</a>
+                </div>
+
+                <button type="button" class="btn btn-primary w-100" onclick="adminLoginsuc()">
+                    Login
+                </button>
+            </form>
+        </div>
+        <div class="mt-4">
+            <p>Not an admin? <span>
+                <a href="index.html" class="text-decoration-none">user login heree!</a>
+            </span></p>
+        </div>
+        <div class="mt-3">
+            <p class="text-secondary">sample admin : admin@cheapbuy.com
+                <span><br></span>
+                password : admin123
+            </p>
+        </div>
+    </div>
+            
+        </div>
+    </div>
+    <script src="../sellerFrontEnd/sellerLogin.js"></script>
+    
+</body>
+</html>
