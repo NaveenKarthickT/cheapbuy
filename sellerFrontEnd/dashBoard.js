@@ -12,7 +12,8 @@ async function showStockProducts(type) {
     const modal = document.getElementById("outOfStockModal");
     const tableBody = document.getElementById("outOfStockTableBody");
     const title = document.getElementById("stockModalTitle");
-
+        const option = document.getElementById("option")
+    option.textContent = "option"
     const email = localStorage.getItem("email");
 
     let url = "";
@@ -135,7 +136,8 @@ async function showStockProducts2() {
     const modal = document.getElementById("outOfStockModal");
     const tableBody = document.getElementById("outOfStockTableBody");
     const title = document.getElementById("stockModalTitle");
-
+    const option = document.getElementById("option")
+    option.textContent = "Available Quantity"
     const email = localStorage.getItem("email");
 
    
@@ -846,3 +848,44 @@ let topSellingChart = null;
 
 loadRevenueChart();
 loadTopSellingChart();
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    const button = document.getElementById("darkModeBtn");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        button.innerHTML = "☀️";
+
+        localStorage.setItem("dashboardTheme", "dark");
+
+    } else {
+
+        button.innerHTML = "🌙";
+
+        localStorage.setItem("dashboardTheme", "light");
+
+    }
+
+}
+
+
+function loadDashboardTheme() {
+
+    const savedTheme = localStorage.getItem("dashboardTheme");
+
+    const button = document.getElementById("darkModeBtn");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark-mode");
+
+        button.innerHTML = "☀️";
+
+    }
+
+}
+
+loadDashboardTheme();
