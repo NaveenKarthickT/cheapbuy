@@ -4,6 +4,36 @@ const businessNameValue = localStorage.getItem("businessName");
 
 businessName.textContent = businessNameValue || "";
 
+const container = document.getElementById("container")
+const report = document.getElementById("report")
+const viewproducts = document.getElementById("containerr")
+const rcontent = document.getElementById("report-content")
+function addprod(){
+    window.location.href="addprod.html"
+}
+
+
+function viewprod(){
+     window.location.href="sellerDashBoard.html"
+    report.style.display="none"
+    container.style.display="flex"
+    viewproducts.style.display="none"
+
+}
+
+function viewreport(){
+      window.location.href="sellerDashBoard.html"
+    report.style.display="block"
+    container.style.display="none"
+    viewproducts.style.display="none"
+}
+
+function viewproduct(){
+      window.location.href="sellerDashBoard.html"
+    report.style.display="none"
+    container.style.display="none"
+    viewproducts.style.display="flex"
+}
 
 
 async function addproducts() {

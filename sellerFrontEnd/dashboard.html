@@ -178,6 +178,64 @@
 
 </div>
 
+
+
+<div class="container mt-5">
+
+    <div class="row g-4">
+
+        <!-- Current Sales Report -->
+      <div class="col-md-6">
+
+    <div class="card shadow p-3">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+            <h4 class="text-secondary mb-0">
+                📊 Sales Report
+            </h4>
+
+            <!-- <input
+                type="month"
+                id="salesMonth"
+                class="form-control"
+                style="width: 170px;"
+                onchange="loadRevenueChart()"> -->
+
+        </div>
+
+        <div style="height: 400px;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+
+        <!-- Top 3 Selling Products -->
+        <div class="col-md-6">
+
+            <div class="card shadow p-3">
+
+                <h4 class="text-secondary text-center">
+                    🏆 Top 3 Selling Products
+                </h4>
+
+                <div style="height: 400px;">
+                    <canvas id="topSellingChart"></canvas>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 <div class="card shadow container mt-5">
 
             <div class="card-header bg-primary text-white mt-2">
@@ -238,59 +296,7 @@
     <ul class="pagination justify-content-center" id="pagination"></ul>
 </nav>
 
-<div class="container mt-5">
 
-    <div class="row g-4">
-
-        <!-- Current Sales Report -->
-      <div class="col-md-6">
-
-    <div class="card shadow p-3">
-
-        <div class="d-flex justify-content-between align-items-center mb-3">
-
-            <h4 class="text-secondary mb-0">
-                📊 Sales Report
-            </h4>
-
-            <!-- <input
-                type="month"
-                id="salesMonth"
-                class="form-control"
-                style="width: 170px;"
-                onchange="loadRevenueChart()"> -->
-
-        </div>
-
-        <div style="height: 400px;">
-            <canvas id="myChart"></canvas>
-        </div>
-
-    </div>
-
-</div>
-
-
-        <!-- Top 3 Selling Products -->
-        <div class="col-md-6">
-
-            <div class="card shadow p-3">
-
-                <h4 class="text-secondary text-center">
-                    🏆 Top 3 Selling Products
-                </h4>
-
-                <div style="height: 400px;">
-                    <canvas id="topSellingChart"></canvas>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
