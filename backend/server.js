@@ -182,6 +182,19 @@ app.get("/cart" , (req,res)=>{
         console.log(result[0])
     })
 })
+// app.get("/cartitems" , (req,res)=>{
+//     const email = req.query.email;
+//     const sql ="select * from cart where email =?"
+//     db.query(sql , [email],(err,result)=>{
+//         if(err){
+//             return res.status(500).json({
+//                 msg:"retrieve failed"
+//             })
+//         }
+//         res.json(result)
+       
+//     })
+// })
 
 app.get("/paymentProducts",(req,res) =>{
     const prodname = req.query.name;

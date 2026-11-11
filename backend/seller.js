@@ -200,5 +200,245 @@ seller.get("/getremainingcount" , (req,res)=>{
     })
 })
 
+seller.get("/getRevenue" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT price from orders join products on orders.productname = products.name where seller_email = ?"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+seller.get("/getDayRevenue" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from orders join products on orders.productname = products.name where seller_email = ? AND DATE(date) = CURDATE()"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+seller.get("/getMonthRevenue" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from orders join products on orders.productname = products.name where seller_email = ? AND MONTH(date) = MONTH(CURDATE())"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+
+seller.get("/getYearRevenue" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from orders join products on orders.productname = products.name where seller_email = ? AND YEAR(date) = YEAR(CURDATE())"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+
+seller.get("/OutOfStock" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from orders join products on orders.productname = products.name where seller_email = ? AND YEAR(date) = YEAR(CURDATE())"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+
+seller.get("/oosCount" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from products  where seller_email = ? AND available_quantity = 0"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+seller.get("/lowCount" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from products  where seller_email = ? AND available_quantity < 6 and available_quantity !=0"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+
+seller.get("/availableCount" , (req,res)=>{
+    const email = req.query.email;
+    const sql = "SELECT * from products  where seller_email = ?"
+     db.query(sql, [email],(err,result)=>{
+        if(err){
+            res.status(500).json(
+                {
+                    msg:"error"
+                }
+            )
+        }
+        res.json(result)
+    })
+
+})
+
+seller.get("/topSellingProducts", (req, res) => {
+
+    const email = req.query.email;
+
+    const sql = `
+        SELECT 
+            productname,
+            SUM(quantity) AS totalSold
+        FROM orders join products on orders.productname = products.name
+        WHERE seller_email = ?
+        GROUP BY productname
+        ORDER BY totalSold DESC
+    `;
+
+    db.query(sql, [email], (err, result) => {
+
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(result);
+
+    });
+
+});
+
+
+seller.get("/prodReport", (req, res) => {
+
+    const email = req.query.email;
+
+    const sql = `select * from products where seller_email = ?`;
+
+    db.query(sql, [email], (err, result) => {
+
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                message: "Database error"
+            });
+        }
+
+        res.json(result);
+
+    });
+
+});
+
+seller.get("/chartRevenue", (req, res) => {
+
+    const email = req.query.email;
+
+    const sql = `
+        SELECT 
+            MONTH(orders.date) AS monthNumber,
+            MONTHNAME(orders.date) AS month,
+            SUM(products.price * orders.quantity) AS revenue
+
+        FROM orders
+
+        JOIN products
+            ON orders.productname = products.name
+
+        WHERE products.seller_email = ?
+
+        AND YEAR(orders.date) = YEAR(CURDATE())
+
+        GROUP BY 
+            MONTH(orders.date),
+            MONTHNAME(orders.date)
+
+        ORDER BY MONTH(orders.date)
+    `;
+
+    db.query(sql, [email], (err, result) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.status(500).json({
+                msg: "Failed to get chart data"
+            });
+
+        }
+
+        res.json(result);
+
+    });
+
+});
+seller.get("/addQuantity" , (req,res) =>{
+    const email = req.query.email;
+    const id=req.query.id;
+    const quan=req.query.quan;
+    const sql = "update products set available_quantity = ? where id=?"
+     db.query(sql, [quan,id], (err, result) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.status(500).json({
+                msg: "Failed to get chart data"
+            });
+
+        }
+
+        res.json(result);
+
+    });
+})
 
 export default seller;

@@ -24,7 +24,20 @@ async function login(){
 
     
     const data = await response.json();
-    
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email === "") {
+          errorMsg.style.display="block"
+           errorMsg.textContent ="Enter your mail id !"
+        return;
+    }
+
+    if (!emailPattern.test(email)) {
+         errorMsg.style.display="block"
+        errorMsg.textContent ="Enter a Valid email Address!"
+        return;
+    }
     
     if (email =="" || pass ==""){
         errorMsg.style.display="block";
@@ -39,7 +52,7 @@ async function login(){
             localStorage.setItem("businessName",data.business_name) 
             localStorage.setItem("email", data.email);
             localStorage.setItem("name",data.name);
-            window.location.href="sellerDashBoard.html";
+            window.location.href="dashBoard.html";
             
         }
         else{

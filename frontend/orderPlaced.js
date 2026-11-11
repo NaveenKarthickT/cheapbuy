@@ -99,7 +99,7 @@ async function openTracking(button) {
         step.classList.remove("active");
     });
 
-    if (data.status === "placed") {
+    if (data.status === "order placed") {
         document.getElementById("placed").classList.add("active");
         document.getElementById("status").textContent="Placed"
     }
