@@ -19,6 +19,12 @@
     </div>
 
     <div class="d-flex align-items-center gap-2">
+        <span
+    class="material-symbols-outlined dark-mode-btn"
+    id="darkModeBtn"
+    onclick="toggleDarkMode()">
+    dark_mode
+</span>
         <h3 class="mb-0">Welcome</h3>
 
         <span id="username" class="text-secondary"></span>
@@ -58,7 +64,26 @@
 
 </div>
 </div>
+
+
 <div class="msg-box" id="msg-box">mmn</div>
+<!-- Product Details Popup -->
+<div id="productModal" class="product-modal">
+
+    <div class="product-modal-content">
+
+        <!-- Close Button -->
+        <span class="close-product-modal" onclick="closeProductModal()">
+            &times;
+        </span>
+
+        <!-- Product Details -->
+        <div id="productDetails"></div>
+
+    </div>
+
+</div>
+
 <script src="./login.js"></script>
 
 </body>

@@ -241,3 +241,130 @@ h4{
         text-align: center;
     }
 }
+
+/* ================= DARK MODE ================= */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Navigation */
+body.dark-mode .nav {
+    color: white;
+}
+
+body.dark-mode .nav h1 {
+    color: white;
+}
+
+/* Horizontal line */
+body.dark-mode .hr {
+    border-color: #444;
+}
+
+/* Cart product name */
+body.dark-mode .prodname {
+    background-color: #1e1e1e;
+    color: white !important;
+}
+
+/* Product cards / cart area */
+body.dark-mode .prod-cart {
+    color: white;
+}
+
+/* Normal product text */
+body.dark-mode .content p {
+    color: #e0e0e0;
+}
+
+/* Price details */
+body.dark-mode .Details {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+/* Price details text */
+body.dark-mode .Details p,
+body.dark-mode .Details h3,
+body.dark-mode .Details h4 {
+    color: white;
+}
+
+/* Payment popup */
+body.dark-mode .payment-popup {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+/* Address section inside payment popup */
+body.dark-mode .add-address {
+    border-color: #555;
+}
+
+/* Delivery address popup */
+body.dark-mode .delivery-address {
+    background-color: #1e1e1e;
+    border-color: #555;
+    color: white;
+}
+
+/* Address form labels */
+body.dark-mode .delivery-address label {
+    color: white;
+}
+
+/* Address inputs */
+body.dark-mode .delivery-address input,
+body.dark-mode .delivery-address textarea {
+    background-color: #2a2a2a;
+    color: white;
+    border-color: #555;
+}
+
+/* Input placeholders */
+body.dark-mode .delivery-address input::placeholder,
+body.dark-mode .delivery-address textarea::placeholder {
+    color: #aaa;
+}
+
+/* Cash on Delivery box */
+body.dark-mode .cash {
+    border-color: #555;
+    color: white;
+}
+
+/* Online payment box */
+body.dark-mode .online {
+    border-color: #555;
+    color: white;
+}
+
+/* Text inside payment boxes */
+body.dark-mode .cash p,
+body.dark-mode .online p,
+body.dark-mode .cash strong,
+body.dark-mode .online strong {
+    color: white;
+}
+
+/* Keep secondary text readable */
+body.dark-mode .text-secondary {
+    color: #bbbbbb !important;
+}
+
+/* Blur overlay */
+body.dark-mode .blur-overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Dark mode icon */
+.dark-mode-btn {
+    cursor: pointer;
+    font-size: 28px;
+}
+
+body.dark-mode .dark-mode-btn {
+    color: #ffd54f;
+}

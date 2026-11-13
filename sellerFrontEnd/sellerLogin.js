@@ -160,3 +160,14 @@ async function register_suc() {
         alert("enter all details!!!");
     }
 }
+
+
+
+if (localStorage.getItem("openResetPassword") === "true") {
+
+    login_page.style.display = "none";
+    register_page.style.display = "none";
+    fpage.style.display = "block";
+
+    localStorage.removeItem("openResetPassword");
+}

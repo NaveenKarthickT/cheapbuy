@@ -522,3 +522,51 @@ msgdisplay();
 //     }
 // }
 // checkcart()
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    const button = document.getElementById("darkModeBtn");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        button.textContent = "light_mode";
+
+        localStorage.setItem("dashboardTheme", "dark");
+
+    } else {
+
+        button.textContent = "dark_mode";
+
+        localStorage.setItem("dashboardTheme", "light");
+
+    }
+
+}
+
+
+function loadTheme() {
+
+    const savedTheme = localStorage.getItem("dashboardTheme");
+
+    const button = document.getElementById("darkModeBtn");
+
+    if (!button) return;
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark-mode");
+
+        button.textContent = "light_mode";
+
+    } else {
+
+        button.textContent = "dark_mode";
+
+    }
+
+}
+
+
+loadTheme();

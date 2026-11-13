@@ -1,8 +1,8 @@
 const businessName = document.getElementById("Buisness-Name")
 const name = localStorage.getItem("businessName")
-const uname=localStorage.getItem("name")
-const buname=document.getElementById("name")
-businessName.textContent=name
+const uname = localStorage.getItem("name")
+const buname = document.getElementById("name")
+businessName.textContent = name
 
 
 
@@ -12,8 +12,10 @@ async function showStockProducts(type) {
     const modal = document.getElementById("outOfStockModal");
     const tableBody = document.getElementById("outOfStockTableBody");
     const title = document.getElementById("stockModalTitle");
-        const option = document.getElementById("option")
+    const option = document.getElementById("option")
+
     option.textContent = "option"
+
     const email = localStorage.getItem("email");
 
     let url = "";
@@ -112,6 +114,8 @@ async function showStockProducts(type) {
     }
 
 }
+
+
 function showOutOfStock() {
 
     showStockProducts("out");
@@ -131,20 +135,22 @@ function showAvailable() {
     showStockProducts2();
 
 }
+
+
 async function showStockProducts2() {
 
     const modal = document.getElementById("outOfStockModal");
     const tableBody = document.getElementById("outOfStockTableBody");
     const title = document.getElementById("stockModalTitle");
     const option = document.getElementById("option")
+
     option.textContent = "Available Quantity"
+
     const email = localStorage.getItem("email");
 
-   
+    title.textContent = "Available Products";
 
-        title.textContent = "Available Products";
-       let url = `http://localhost:5000/seller/availableCount?email=${email}`;
-
+    let url = `http://localhost:5000/seller/availableCount?email=${email}`;
 
     try {
 
@@ -184,7 +190,8 @@ async function showStockProducts2() {
 
                     <td>₹${element.price}</td>
 
-                    <td class="text-success">${element.available_quantity} </td>
+                    <td class="text-success">${element.available_quantity}</td>
+
                 </tr>
 
             `;
@@ -203,8 +210,11 @@ async function showStockProducts2() {
 
 }
 
+
 async function addQuantity(productId) {
+
     const email = localStorage.getItem("email")
+
     const quantityInput = document.getElementById(`quantity-${productId}`);
 
     const quantity = Number(quantityInput.value);
@@ -215,107 +225,181 @@ async function addQuantity(productId) {
 
         return;
     }
-    const response = await fetch (`http://localhost:5000/seller/addQuantity?email=${email}&id=${productId}&quan=${quantity}`)
+
+    const response = await fetch(
+        `http://localhost:5000/seller/addQuantity?email=${email}&id=${productId}&quan=${quantity}`
+    )
+
     console.log("Product ID:", productId);
     console.log("Quantity to add:", quantity);
+
     const data = await response.json();
-console.log(data);
-if(response.ok){
-    alert("addded")
-}
+
+    console.log(data);
+
+    if (response.ok) {
+        alert("addded")
+    }
 
 }
+
 
 function closeOutOfStock() {
 
     const modal = document.getElementById("outOfStockModal");
 
     modal.style.display = "none";
+
 }
 
 
-// async function revenue(){
-//     const email = localStorage.getItem("email")
-//     const res1 = await fetch(`http://localhost:5000/seller/getRevenue?email=${email}`)
-//     const data1 = await res1.json();
-//    const tr= document.getElementById("TotalRevenue");
-//    let t=0;
-//    console.log(data1)
-//    data1.forEach(element => {
-//     t = t + Number(element.price);
-//    });
-//    tr.textContent=t
 
-// }
-// revenue()
 
-async function dayrevenue(){
+async function dayrevenue() {
+
     const email = localStorage.getItem("email")
-    const res1 = await fetch(`http://localhost:5000/seller/getDayRevenue?email=${email}`)
+
+    const res1 = await fetch(
+        `http://localhost:5000/seller/getDayRevenue?email=${email}`
+    )
+
     const data1 = await res1.json();
-   const dr= document.getElementById("dayRevenue");
-   let t=0;
-   console.log(data1)
-   data1.forEach(element => {
-    t = t + Number(element.price);
-   });
-   dr.textContent=t
+
+    const dr = document.getElementById("dayRevenue");
+
+    let t = 0;
+
+    console.log(data1)
+
+    data1.forEach(element => {
+
+        t = t + Number(element.price);
+
+    });
+
+    dr.textContent = t
 
 }
+
 dayrevenue()
 
-async function Monthrevenue(){
+
+async function Monthrevenue() {
+
     const email = localStorage.getItem("email")
-    const res1 = await fetch(`http://localhost:5000/seller/getMonthRevenue?email=${email}`)
+
+    const res1 = await fetch(
+        `http://localhost:5000/seller/getMonthRevenue?email=${email}`
+    )
+
     const data1 = await res1.json();
-   const Mr= document.getElementById("MonthRevenue");
-   let t=0;
-   console.log(data1)
-   data1.forEach(element => {
-    t = t + Number(element.price);
-   });
-   Mr.textContent=t
+
+    const Mr = document.getElementById("MonthRevenue");
+
+    let t = 0;
+
+    console.log(data1)
+
+    data1.forEach(element => {
+
+        t = t + Number(element.price);
+
+    });
+
+    Mr.textContent = t
 
 }
+
 Monthrevenue()
 
-async function Yearrevenue(){
+
+async function Yearrevenue() {
+
     const email = localStorage.getItem("email")
-    const res1 = await fetch(`http://localhost:5000/seller/getYearRevenue?email=${email}`)
+
+    const res1 = await fetch(
+        `http://localhost:5000/seller/getYearRevenue?email=${email}`
+    )
+
     const data1 = await res1.json();
-   const Yr= document.getElementById("YearRevenue");
-   let t=0;
-   console.log(data1)
-   data1.forEach(element => {
-    t = t + Number(element.price);
-   });
-   Yr.textContent=t
-   const oosCount = document.getElementById("oosCount")
-   const lowCount= document.getElementById("lowCount")
-   const res2 = await fetch(`http://localhost:5000/seller/oosCount?email=${email}`)
-   const data2 = await res2.json()
-   let c=0;
-   data2.forEach((element) =>{
-    c=c+1
-   })
-   oosCount.textContent=c
-    const res3 = await fetch(`http://localhost:5000/seller/lowCount?email=${email}`)
-   const data3 = await res3.json()
-   let d=0;
-   data3.forEach((element) =>{
-    d=d+1
-   })
-   lowCount.textContent=d
-   const availCount = document.getElementById("availCount")
-      const res4 = await fetch(`http://localhost:5000/seller/availableCount?email=${email}`)
-   const data4 = await res4.json()
-   let e=0;
-   data4.forEach((element) =>{
-    e=e+1
-   })
-   availCount.textContent=e
+
+    const Yr = document.getElementById("YearRevenue");
+
+    let t = 0;
+
+    console.log(data1)
+
+    data1.forEach(element => {
+
+        t = t + Number(element.price);
+
+    });
+
+    Yr.textContent = t
+
+
+    const oosCount = document.getElementById("oosCount")
+    const lowCount = document.getElementById("lowCount")
+
+
+    const res2 = await fetch(
+        `http://localhost:5000/seller/oosCount?email=${email}`
+    )
+
+    const data2 = await res2.json()
+
+    let c = 0;
+
+    data2.forEach((element) => {
+
+        c = c + 1
+
+    })
+
+    oosCount.textContent = c
+
+
+    const res3 = await fetch(
+        `http://localhost:5000/seller/lowCount?email=${email}`
+    )
+
+    const data3 = await res3.json()
+
+    let d = 0;
+
+    data3.forEach((element) => {
+
+        d = d + 1
+
+    })
+
+    lowCount.textContent = d
+
+
+    const availCount = document.getElementById("availCount")
+
+
+    const res4 = await fetch(
+        `http://localhost:5000/seller/availableCount?email=${email}`
+    )
+
+    const data4 = await res4.json()
+
+    let e = 0;
+
+    data4.forEach((element) => {
+
+        e = e + 1
+
+    })
+
+    availCount.textContent = e
+
 }
+
 Yearrevenue()
+
+
 
 
 async function loadTopSellingProducts() {
@@ -338,13 +422,14 @@ async function loadTopSellingProducts() {
 
             let rank = index + 1;
 
-            // Top 3 rank symbols
             if (rank === 1) {
                 rank = "🥇 1";
             }
+
             else if (rank === 2) {
                 rank = "🥈 2";
             }
+
             else if (rank === 3) {
                 rank = "🥉 3";
             }
@@ -360,6 +445,7 @@ async function loadTopSellingProducts() {
         });
 
     }
+
     catch (error) {
 
         console.log("Error:", error);
@@ -371,9 +457,14 @@ async function loadTopSellingProducts() {
 loadTopSellingProducts();
 
 
+
+
 let products = [];
 let currentPage = 1;
+
 const rowsPerPage = 2;
+
+
 
 
 async function loadProductReport() {
@@ -398,15 +489,19 @@ async function loadProductReport() {
 
         displayProducts();
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.log("Error:", error);
 
     }
+
 }
 
 
-// Display products for the current page
+
+
 function displayProducts() {
 
     const tbody = document.getElementById("ProductReort");
@@ -414,12 +509,12 @@ function displayProducts() {
     tbody.innerHTML = "";
 
     const start = (currentPage - 1) * rowsPerPage;
+
     const end = start + rowsPerPage;
 
     const currentProducts = products.slice(start, end);
 
 
-    // If no products
     if (currentProducts.length === 0) {
 
         tbody.innerHTML = `
@@ -436,7 +531,6 @@ function displayProducts() {
 
         const serialNumber = start + index + 1;
 
-        // Availability
         let availability = "";
 
         if (product.available_quantity == 0) {
@@ -448,6 +542,7 @@ function displayProducts() {
             `;
 
         }
+
         else if (product.available_quantity < 6) {
 
             availability = `
@@ -457,6 +552,7 @@ function displayProducts() {
             `;
 
         }
+
         else {
 
             availability = `
@@ -476,8 +572,6 @@ function displayProducts() {
 
                 <td>${product.name}</td>
 
-              
-
                 <td>₹${product.price}</td>
 
                 <td>${availability}</td>
@@ -494,7 +588,8 @@ function displayProducts() {
 }
 
 
-// Create pagination buttons
+
+
 function createPagination() {
 
     const pagination = document.getElementById("pagination");
@@ -504,13 +599,11 @@ function createPagination() {
     const totalPages = Math.ceil(products.length / rowsPerPage);
 
 
-    // Don't show pagination if only one page
     if (totalPages <= 1) {
         return;
     }
 
 
-    // Previous button
     pagination.innerHTML += `
 
         <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
@@ -528,7 +621,6 @@ function createPagination() {
     `;
 
 
-    // Page numbers
     for (let i = 1; i <= totalPages; i++) {
 
         pagination.innerHTML += `
@@ -550,7 +642,6 @@ function createPagination() {
     }
 
 
-    // Next button
     pagination.innerHTML += `
 
         <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
@@ -570,7 +661,8 @@ function createPagination() {
 }
 
 
-// Change page
+
+
 function changePage(page) {
 
     const totalPages = Math.ceil(products.length / rowsPerPage);
@@ -588,36 +680,69 @@ function changePage(page) {
 }
 
 
-// Load report
+
 loadProductReport();
 
-function addprod(){
-    window.location.href="addprod.html"
-}
 
 
-function viewprod(){
-     window.location.href="sellerDashBoard.html"
-    report.style.display="none"
-    container.style.display="flex"
-    viewproducts.style.display="none"
+function addprod() {
+
+    window.location.href = "addprod.html"
 
 }
 
-function viewreport(){
-      window.location.href="sellerDashBoard.html"
-    report.style.display="block"
-    container.style.display="none"
-    viewproducts.style.display="none"
+
+function viewprod() {
+
+    window.location.href = "sellerDashBoard.html"
+
+    report.style.display = "none"
+
+    container.style.display = "flex"
+
+    viewproducts.style.display = "none"
+
 }
 
-function viewproduct(){
-      window.location.href="sellerDashBoard.html"
-    report.style.display="none"
-    container.style.display="none"
-    viewproducts.style.display="flex"
+
+function viewreport() {
+
+    window.location.href = "sellerDashBoard.html"
+
+    report.style.display = "block"
+
+    container.style.display = "none"
+
+    viewproducts.style.display = "none"
+
 }
 
+
+function viewproduct() {
+
+    window.location.href = "sellerDashBoard.html"
+
+    report.style.display = "none"
+
+    container.style.display = "none"
+
+    viewproducts.style.display = "flex"
+
+}
+
+
+
+
+// ================= CHART VARIABLES =================
+
+let revenueChart = null;
+
+let topSellingChart = null;
+
+
+
+
+// ================= REVENUE CHART =================
 
 async function loadRevenueChart() {
 
@@ -634,11 +759,45 @@ async function loadRevenueChart() {
         console.log("Month Wise Chart Data:", data);
 
 
-        const labels = [];
-        const revenue = [];
+        const months = [
 
-        // Different colour for each month
-        const colors = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+
+        ];
+
+
+        const labels = months;
+
+
+        const revenue = new Array(12).fill(0);
+
+
+        data.forEach((element) => {
+
+            const monthIndex = months.indexOf(element.month);
+
+            if (monthIndex !== -1) {
+
+                revenue[monthIndex] = Number(element.revenue);
+
+            }
+
+        });
+
+
+        const backgroundColors = [
+
             "#4CAF50",
             "#2196F3",
             "#FF9800",
@@ -651,26 +810,10 @@ async function loadRevenueChart() {
             "#8BC34A",
             "#FFC107",
             "#607D8B"
+
         ];
 
 
-        const backgroundColors = [];
-
-
-        data.forEach((element, index) => {
-
-            labels.push(element.month);
-
-            revenue.push(Number(element.revenue));
-
-            backgroundColors.push(
-                colors[index % colors.length]
-            );
-
-        });
-
-
-        // Destroy previous chart
         if (revenueChart) {
 
             revenueChart.destroy();
@@ -679,6 +822,18 @@ async function loadRevenueChart() {
 
 
         const ctx = document.getElementById("myChart");
+
+
+        const isDarkMode =
+            document.body.classList.contains("dark-mode");
+
+
+        const textColor =
+            isDarkMode ? "#ffffff" : "#333333";
+
+
+        const gridColor =
+            isDarkMode ? "#444444" : "#dddddd";
 
 
         revenueChart = new Chart(ctx, {
@@ -713,7 +868,13 @@ async function loadRevenueChart() {
 
                     legend: {
 
-                        display: true
+                        display: true,
+
+                        labels: {
+
+                            color: textColor
+
+                        }
 
                     }
 
@@ -721,17 +882,41 @@ async function loadRevenueChart() {
 
                 scales: {
 
+                    x: {
+
+                        ticks: {
+
+                            color: textColor
+
+                        },
+
+                        grid: {
+
+                            color: gridColor
+
+                        }
+
+                    },
+
                     y: {
 
                         beginAtZero: true,
 
                         ticks: {
 
-                            callback: function(value) {
+                            color: textColor,
+
+                            callback: function (value) {
 
                                 return "₹" + value;
 
                             }
+
+                        },
+
+                        grid: {
+
+                            color: gridColor
 
                         }
 
@@ -752,6 +937,12 @@ async function loadRevenueChart() {
     }
 
 }
+
+
+
+
+// ================= TOP SELLING CHART =================
+
 async function loadTopSellingChart() {
 
     const email = localStorage.getItem("email");
@@ -763,7 +954,9 @@ async function loadTopSellingChart() {
         );
 
         if (!response.ok) {
+
             throw new Error("Failed to load top selling products");
+
         }
 
         const data = await response.json();
@@ -771,11 +964,11 @@ async function loadTopSellingChart() {
         console.log("Top Selling Products:", data);
 
 
-        // Get only top 3 products
         const topThree = data.slice(0, 3);
 
 
         const productNames = [];
+
         const quantitySold = [];
 
 
@@ -791,7 +984,22 @@ async function loadTopSellingChart() {
         const ctx = document.getElementById("topSellingChart");
 
 
-        new Chart(ctx, {
+        const isDarkMode =
+            document.body.classList.contains("dark-mode");
+
+
+        const textColor =
+            isDarkMode ? "#ffffff" : "#333333";
+
+
+        if (topSellingChart) {
+
+            topSellingChart.destroy();
+
+        }
+
+
+        topSellingChart = new Chart(ctx, {
 
             type: "pie",
 
@@ -817,11 +1025,15 @@ async function loadTopSellingChart() {
 
                 maintainAspectRatio: false,
 
-                scales: {
+                plugins: {
 
-                    y: {
+                    legend: {
 
-                        beginAtZero: true
+                        labels: {
+
+                            color: textColor
+
+                        }
 
                     }
 
@@ -843,40 +1055,127 @@ async function loadTopSellingChart() {
 
 
 
-let revenueChart = null;
-let topSellingChart = null;
 
-loadRevenueChart();
-loadTopSellingChart();
+// ================= UPDATE CHART COLOURS =================
+
+function updateChartColors(chart) {
+
+    if (!chart) {
+
+        return;
+
+    }
+
+
+    const isDarkMode =
+        document.body.classList.contains("dark-mode");
+
+
+    const textColor =
+        isDarkMode ? "#ffffff" : "#333333";
+
+
+    const gridColor =
+        isDarkMode ? "#444444" : "#dddddd";
+
+
+    // Legend
+
+    if (chart.options.plugins &&
+        chart.options.plugins.legend) {
+
+        chart.options.plugins.legend.labels.color = textColor;
+
+    }
+
+
+    // X Axis
+
+    if (chart.options.scales &&
+        chart.options.scales.x) {
+
+        chart.options.scales.x.ticks.color = textColor;
+
+        chart.options.scales.x.grid.color = gridColor;
+
+    }
+
+
+    // Y Axis
+
+    if (chart.options.scales &&
+        chart.options.scales.y) {
+
+        chart.options.scales.y.ticks.color = textColor;
+
+        chart.options.scales.y.grid.color = gridColor;
+
+    }
+
+
+    chart.update();
+
+}
+
+
+
+
+// ================= DARK MODE =================
 
 function toggleDarkMode() {
 
     document.body.classList.toggle("dark-mode");
 
-    const button = document.getElementById("darkModeBtn");
+
+    const button =
+        document.getElementById("darkModeBtn");
+
 
     if (document.body.classList.contains("dark-mode")) {
 
         button.innerHTML = "☀️";
 
-        localStorage.setItem("dashboardTheme", "dark");
+        localStorage.setItem(
+            "dashboardTheme",
+            "dark"
+        );
 
-    } else {
+    }
+
+    else {
 
         button.innerHTML = "🌙";
 
-        localStorage.setItem("dashboardTheme", "light");
+        localStorage.setItem(
+            "dashboardTheme",
+            "light"
+        );
 
     }
+
+
+    // Update chart text colours
+
+    updateChartColors(revenueChart);
+
+    updateChartColors(topSellingChart);
 
 }
 
 
+
+
+// ================= LOAD SAVED THEME =================
+
 function loadDashboardTheme() {
 
-    const savedTheme = localStorage.getItem("dashboardTheme");
+    const savedTheme =
+        localStorage.getItem("dashboardTheme");
 
-    const button = document.getElementById("darkModeBtn");
+
+    const button =
+        document.getElementById("darkModeBtn");
+
 
     if (savedTheme === "dark") {
 
@@ -886,6 +1185,21 @@ function loadDashboardTheme() {
 
     }
 
+    else {
+
+        button.innerHTML = "🌙";
+
+    }
+
 }
 
+
+
+
+// ================= INITIAL LOAD =================
+
 loadDashboardTheme();
+
+loadRevenueChart();
+
+loadTopSellingChart();

@@ -311,7 +311,7 @@ seller.get("/lowCount" , (req,res)=>{
 
 seller.get("/availableCount" , (req,res)=>{
     const email = req.query.email;
-    const sql = "SELECT * from products  where seller_email = ?"
+    const sql = "SELECT * from products  where seller_email = ? and available_quantity > 5"
      db.query(sql, [email],(err,result)=>{
         if(err){
             res.status(500).json(
@@ -439,6 +439,26 @@ seller.get("/addQuantity" , (req,res) =>{
         res.json(result);
 
     });
+})
+
+seller.get("/uname" , (req,res)=>{
+    const email = req.query.email;
+    const sql = " select name from dealers where email =?"
+    db.query(sql, [email], (err, result) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.status(500).json({
+                msg: "Failed to get chart data"
+            });
+
+        }
+
+        res.json(result[0]);
+
+    });  
 })
 
 export default seller;

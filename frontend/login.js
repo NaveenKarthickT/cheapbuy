@@ -161,6 +161,23 @@ async function getProducts() {
         const divouter = document.createElement("div")
         const divinner = document.createElement("div");
         divinner.className="product-card"
+        divinner.addEventListener("click", function (event) {
+
+    // Don't open popup when using existing controls
+    if (
+        event.target.closest("button") ||
+        event.target.closest(".inc") ||
+        event.target.closest(".dec") ||
+        event.target.closest("input")
+    ) {
+
+        return;
+
+    }
+
+    showProductModal(product);
+
+});
         divouter.className="col-md-3"
         divinner.innerHTML = `
             <img src="http://localhost:5000/${product.path}">
@@ -181,7 +198,7 @@ async function getProducts() {
                 </label>
             </div>
             <button class="btn btn-primary" onclick="cart(this)">Add to Cart</button>
-            <p class ="text-danger" id="stockmsg">low stock !!</p>
+            <p class ="text-danger" id="stockmsg">only ${product.available_quantity} are left</p>
         `;
         divouter.appendChild(divinner)
         container.appendChild(divouter);
@@ -199,3 +216,392 @@ async function getProducts() {
 }
 
 getProducts();
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    const button = document.getElementById("darkModeBtn");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        button.textContent = "light_mode";
+
+        localStorage.setItem("dashboardTheme", "dark");
+
+    } else {
+
+        button.textContent = "dark_mode";
+
+        localStorage.setItem("dashboardTheme", "light");
+
+    }
+
+}
+
+
+function loadTheme() {
+
+    const savedTheme = localStorage.getItem("dashboardTheme");
+
+    const button = document.getElementById("darkModeBtn");
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add("dark-mode");
+
+        button.textContent = "light_mode";
+
+    } else {
+
+        button.textContent = "dark_mode";
+
+    }
+
+}
+
+
+loadTheme();
+
+let selectedProduct = null;
+
+
+function showProductModal(product) {
+
+    selectedProduct = product;
+
+    const modal = document.getElementById("productModal");
+
+    const details = document.getElementById("productDetails");
+
+
+    details.innerHTML = `
+
+        <div class="product-popup-main">
+
+            <!-- Product Image -->
+
+            <div class="product-popup-image">
+
+                <img
+                    src="http://localhost:5000/${product.path}"
+                    alt="${product.name}"
+                >
+
+            </div>
+
+
+            <!-- Product Details -->
+
+            <div class="product-popup-info">
+
+                <h2 class="product-popup-name">
+
+                    ${product.name}
+
+                </h2>
+
+
+                <h3 class="product-popup-price">
+
+                    ₹${product.price}
+
+                </h3>
+
+
+                <div class="product-popup-rating">
+
+                    ⭐
+
+                    <span>
+
+                        ${product.rating || "4.5"} / 5
+
+                    </span>
+
+                </div>
+
+
+                <div class="product-popup-description">
+
+                    <strong>Description:</strong>
+
+                    <p>
+
+                        ${product.description || "No description available"}
+
+                    </p>
+
+                </div>
+
+
+                <p>
+
+                    <strong>Available Stock:</strong>
+
+                    ${product.available_quantity}
+
+                </p>
+
+
+                <!-- Quantity -->
+
+                <div class="popup-quantity">
+
+                    <strong>Quantity:</strong>
+
+
+                    <div class="quantity-control">
+
+                        <button onclick="decreasePopupQuantity()">
+
+                            −
+
+                        </button>
+
+
+                        <input
+                            type="number"
+                            id="popupQuantity"
+                            value="1"
+                            min="1"
+                            max="${product.available_quantity}"
+                        >
+
+
+                        <button onclick="increasePopupQuantity()">
+
+                            +
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="product-popup-buttons">
+
+                    <button
+                        class="popup-cart-btn btn btn-primary"
+                        onclick="addPopupProductToCart()"
+                    >
+
+                         Add to Cart
+
+                    </button>
+
+
+                    <button
+                        class="popup-order-btn btn btn-success"
+                        onclick="placeOrderFromPopup()"
+                    >
+
+                         Place Order
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Reviews -->
+
+        <div class="product-reviews">
+
+            <h3 class="review-title">
+
+                ⭐ Customer Reviews
+
+            </h3>
+
+
+            <div class="review">
+
+                <strong>Arun Kumar</strong>
+
+                <span class="review-stars">
+
+                    ★★★★★
+
+                </span>
+
+                <p>
+
+                    Good quality product. Worth the price!
+
+                </p>
+
+            </div>
+
+
+            <div class="review">
+
+                <strong>Priya</strong>
+
+                <span class="review-stars">
+
+                    ★★★★☆
+
+                </span>
+
+                <p>
+
+                    The product quality is good and delivery was fast.
+
+                </p>
+
+            </div>
+
+
+            <div class="review">
+
+                <strong>Rahul</strong>
+
+                <span class="review-stars">
+
+                    ★★★★★
+
+                </span>
+
+                <p>
+
+                    Excellent product! I would recommend it.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    modal.classList.add("show");
+
+}
+
+function increasePopupQuantity() {
+
+    const input = document.getElementById("popupQuantity");
+
+    const max = Number(input.max);
+
+    if (Number(input.value) < max) {
+
+        input.value = Number(input.value) + 1;
+
+    }
+
+}
+
+
+function decreasePopupQuantity() {
+
+    const input = document.getElementById("popupQuantity");
+
+    if (Number(input.value) > 1) {
+
+        input.value = Number(input.value) - 1;
+
+    }
+
+}
+
+async function addPopupProductToCart() {
+
+    if (!selectedProduct) {
+        return;
+    }
+
+
+    const email = localStorage.getItem("email");
+
+    const username = localStorage.getItem("username");
+
+    const quantity = document.getElementById("popupQuantity").value;
+
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/cart",
+            {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json"
+
+                },
+
+                body: JSON.stringify({
+
+                    email: email,
+
+                    username: username,
+
+                    productName: selectedProduct.name,
+
+                    quantity: quantity,
+
+                    cartCount: quantity
+
+                })
+
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (response.ok) {
+
+            alert("Product added to cart successfully!");
+
+            getCartCount();
+
+            closeProductModal();
+
+        }
+
+        else {
+
+            alert(data.msg || "Unable to add product to cart");
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        alert("Something went wrong");
+
+    }
+
+}
+
+async function placeOrderFromPopup() {
+
+    await addPopupProductToCart();
+
+    window.location.href = "cart.html";
+
+}
+
+function closeProductModal() {
+
+    const modal = document.getElementById("productModal");
+
+    modal.classList.remove("show");
+
+}

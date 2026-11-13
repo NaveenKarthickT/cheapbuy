@@ -233,3 +233,89 @@ body{
 .close:hover{
     cursor: pointer;
 }
+
+/* ================= DARK MODE ================= */
+
+body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+/* Navigation */
+body.dark-mode .nav-right span {
+    color: #e0e0e0 !important;
+}
+
+/* Horizontal line */
+body.dark-mode .hr {
+    border-color: #444;
+}
+
+/* Welcome text */
+body.dark-mode .welcome-message {
+    color: #ffffff;
+}
+
+/* Product cards */
+body.dark-mode .product-card {
+    background: #1e1e1e;
+    border-color: #444;
+    color: #ffffff;
+}
+
+/* Tables */
+body.dark-mode .table {
+    color: #ffffff;
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .table th,
+body.dark-mode .table td {
+    border-color: #555;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Report filter */
+body.dark-mode .report {
+    color: #ffffff;
+}
+
+/* Date inputs */
+body.dark-mode input[type="date"],
+body.dark-mode input[type="text"],
+body.dark-mode input[type="number"],
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: #2a2a2a;
+    color: white;
+    border-color: #555;
+}
+
+/* Edit popup */
+body.dark-mode .popup,
+body.dark-mode #popup {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+/* Agent popup */
+body.dark-mode #chooseAgent {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+/* Blur overlay */
+body.dark-mode .blur-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Product name */
+body.dark-mode .Buisness-Name {
+    /* Keep your gradient */
+}
+
+/* Recent order text */
+body.dark-mode h5 {
+    color: white;
+}
